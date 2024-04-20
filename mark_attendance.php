@@ -33,6 +33,8 @@
                 die("Invalid query: " . $connection.error);
             };
             while($row = $result->fetch_assoc()) {
+                $present_class = $row['status'] == "present" ? "activated_present":"not_active";
+                $absent_class = $row['status'] == "present" ? "activated_absent":"not_active";
                 echo "
                     <div class='student_box'>
                         <div class='student_details'>
@@ -44,8 +46,8 @@
                         </div>
                         <div class='btns_container'>
                             <a href='/attendance_system/edit.php?id=$row[id]'>Edit</a>
-                            <a href='/attendance_system/present.php?id=$row[id]'>Present</a>
-                            <a href='/attendance_system/absent.php?id=$row[id]'>Absent</a>
+                            <a href='/attendance_system/present.php?id=$row[id]' class='activated_present'>Present</a>
+                            <a href='/attendance_system/absent.php?id=$row[id]' class='$absent_class'>Absent</a>
                         </div>
                         <a href='delete.php?id=$row[id]' class='close_icon'><img src='./icons/cross.png'/></a>
                     </div>
