@@ -17,7 +17,7 @@
 
     if($_SERVER['REQUEST_METHOD'] == 'GET') {
             if(!isset($_GET["id"])) {
-                header("location: /attendance_system/index.php");
+                header("location: /attendance_system/mark_attendance.php");
                 exit;
             }
             $id = $_GET["id"];
@@ -28,7 +28,7 @@
             $row = $result->fetch_assoc();
 
             if(!$row) {
-                header("location: /attendance_system/index.php");
+                header("location: /attendance_system/mark_attendance.php");
                 exit;
             }
 
@@ -62,7 +62,7 @@
 
             $successMessage = "Student info updated successfully.";
 
-            header("location: /attendance_system/index.php");
+            header("location: /attendance_system/mark_attendance.php");
             exit;
         } while (true);
     }
@@ -73,7 +73,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Edit student details</title>
+    <link rel="stylesheet" href="create.css" />
 </head>
 <body>
     <div class="error_box">
@@ -85,7 +86,10 @@
             ?>
         </p>
     </div>
-    <form method="post">
+    <div class="create_titles">
+        <h2>Edit student details</h2>
+    </div>
+    <form method="post" class="create_form">
         <input type="hidden" name="id" value="<?php echo $id ?>">
         <input type="text" name="name" value="<?php echo $name ?>">
         <input type="text" name="email" value="<?php echo $email ?>">
@@ -100,8 +104,10 @@
                 ?>
             </p>
         </div>
-        <button type="submit">Submit</button>
-        <a href="/attendance_system/index.php" role="button">Cancel</a>
+        <div class="create_form_btn_box">
+            <button type="submit">Submit</button>
+            <a href="/attendance_system/mark_attendance.php" role="button">Cancel</a>
+       </div>
     </form>
 </body>
 </html>

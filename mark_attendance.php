@@ -8,10 +8,10 @@
 </head>
 <body>
     <div class="title">
-        <h1>Attendance System</h1>
-        <!-- <div>
+        <h1>Take attendance</h1>
+        <div>
             <a href="/attendance_system/create.php" class="add_student_btn">ADD NEW STUDENT</a>
-        </div> -->
+        </div>
     </div>
     <div class="title_offset"></div>
     <div class="students_container">
@@ -27,9 +27,7 @@
                 die("Connection failed: " . $connection->connect_error);
             }
 
-            $date_array = array();
-
-            $sql = "SELECT created_at FROM students";
+            $sql = "SELECT * FROM students";
             $result = $connection->query($sql);
             if(!$result) {
                 die("Invalid query: " . $connection.error);
@@ -38,12 +36,21 @@
                 echo "
                     <div class='student_box'>
                         <div class='student_details'>
+                            <div>$row[name]</div>
+                            <div>$row[email]</div>
+                            <div>$row[phone]</div>
+                            <div>$row[address]</div>
                             <div>$row[created_at]</div> 
                         </div>
+                        <div class='btns_container'>
+                            <a href='/attendance_system/edit.php?id=$row[id]'>Edit</a>
+                            <a href='/attendance_system/present.php?id=$row[id]'>Present</a>
+                            <a href='/attendance_system/absent.php?id=$row[id]'>Absent</a>
+                        </div>
+                        <a href='delete.php?id=$row[id]' class='close_icon'><img src='./icons/cross.png'/></a>
                     </div>
                 ";
             }
-            
         ?>
     </div>
 </body>

@@ -44,7 +44,7 @@
 
             $successMessage = "Student added successfully";
 
-            header("location: /attendance_system/index.php");
+            header("location: /attendance_system/mark_attendance.php");
             exit;
 
         } while(false);
@@ -57,33 +57,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="create.css" />
 </head>
 <body>
     <div class="error_box">
         <p>
             <?php 
                 if(!empty($erroMessage)){
-                    echo "<p>$erroMessage</p>";
+                    echo "<p style='color: red'>$erroMessage</p>";
                 };
             ?>
         </p>
     </div>
-    <form method="post">
-        <input type="text" name="name" value="<?php echo $name ?>">
-        <input type="text" name="email" value="<?php echo $email ?>">
-        <input type="text" name="phone" value="<?php echo $phone ?>">
-        <input type="text" name="address" value="<?php echo $address ?>">
+    <div class="create_titles">
+        <h2>Add new student</h2>
+    </div>
+    <form method="post" class="create_form">
+        <input type="text" name="name" value="<?php echo $name ?>" placeholder="Fullname">
+        <input type="text" name="email" value="<?php echo $email ?>" placeholder="Email">
+        <input type="text" name="phone" value="<?php echo $phone ?>" placeholder="Phone">
+        <input type="text" name="address" value="<?php echo $address ?>" placeholder="Address">
         <div class="success_box">
             <p>
                 <?php 
                     if(!empty($successMessage)){
-                        echo "<p>$successMessage</p>";
+                        echo "<p style='color: green'>$successMessage</p>";
                     };
                 ?>
             </p>
         </div>
-        <button type="submit">Submit</button>
-        <a href="/attendance_system/index.php" role="button">Cancel</a>
+        <div class="create_form_btn_box">
+            <button type="submit">Submit</button>
+            <a href="/attendance_system/mark_attendance.php" role="button">Cancel</a>
+        </div>
     </form>
 </body>
 </html>
